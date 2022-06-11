@@ -9,16 +9,21 @@ const CheckoutProduct = ({
   item: { id, title, price, rating, description, image, hasPrime },
 }) => {
   const product = {
-    id, title, price, rating, description, image, hasPrime
-   } 
-  const dispatch = useDispatch()
-  const addItemtoBasket = () => {
-   
+    id,
+    title,
+    price,
+    rating,
+    description,
+    image,
+    hasPrime,
+  };
+  const dispatch = useDispatch();
+  const addItemToBasket = () => {
     dispatch(addToBasket(product));
-  }
+  };
   const removeItemFromBasket = () => {
-    dispatch(removeFromBasket({id}))
-  }
+    dispatch(removeFromBasket({ id }));
+  };
   return (
     <div className="grid grid-cols-5">
       <Image src={image} height={200} width={200} objectFit="contain" />
@@ -46,9 +51,13 @@ const CheckoutProduct = ({
         )}
       </div>
       <div className="flex flex-col space-y-2 my-auto justify-self-end">
-      <button className="button " onClick={()=>addItemToBasket()}>Add to Basket</button>
-      <button className="button " onClick={()=>removeItemFromBasket()}>Remove from Basket</button>
-      </div> 
+        <button className="button " onClick={() => addItemToBasket()}>
+          Add to Basket
+        </button>
+        <button className="button " onClick={() => removeItemFromBasket()}>
+          Remove from Basket
+        </button>
+      </div>
     </div>
   );
 };

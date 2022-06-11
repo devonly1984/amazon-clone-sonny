@@ -12,13 +12,15 @@ export const basketSlice = createSlice({
       state.items = [...state.items, action.payload];
     },
     removeFromBasket: (state, action) => {
-      const index = state.items.findIndex(basketItem => basketItem.id === action.payload.id)
+      const index = state.items.findIndex(
+        (basketItem) => basketItem.id === action.payload.id
+      );
       let newBasket = [...state.items];
       if (index !== -1) {
-        newItems.splice(index,1)
-        state.items = newBasket
+        newBasket.splice(index, 1);
+        state.items = newBasket;
       } else {
-        console.warn("item doesn't exists in basket")
+        console.warn("item doesn't exists in basket");
       }
     },
   },
@@ -28,6 +30,6 @@ export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
 // Selectors - This is how we pull information from the Global store slice
 export const selectItems = (state) => state.basket.items;
-export const selectTotal = (state) => 
-state.basket.items.reduce((total,item) => total + item.price,0)
+export const selectTotal = (state) =>
+  state.basket.items.reduce((total, item) => total + item.price, 0);
 export default basketSlice.reducer;

@@ -9,7 +9,6 @@ const Checkout = () => {
   const items = useSelector(selectItems);
   const { data: session } = useSession();
   const total = useSelector(selectTotal);
-  console.log("Checkout", total);
   return (
     <div className="bg-gray-100">
       <Header />
@@ -49,7 +48,8 @@ const Checkout = () => {
                   className={`button mt-2 ${
                     !session &&
                     "from-grey-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed"
-                  }`}>
+                  }`}
+                >
                   {!session ? "Sign in to checkout" : "Proceed to Checkout"}
                 </button>
               </>
