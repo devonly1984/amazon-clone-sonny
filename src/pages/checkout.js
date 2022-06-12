@@ -18,6 +18,7 @@ const Checkout = () => {
       items,
       email: session?.user?.email,
     });
+    console.log(session);
     const result = await stripe.redirectToCheckout({
       sessionId: checkoutSession.data.id,
     });
