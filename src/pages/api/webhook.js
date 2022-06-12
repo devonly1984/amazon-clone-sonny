@@ -15,13 +15,13 @@ const fufillOrder = async (session) => {
   return app
     .firestore()
     .collection("users")
-    .doc(session.metadata.email)
+    .doc(session?.metadata?.email)
     .collection("orders")
     .doc(session.id)
     .set({
-      amount: session.amount_total / 100,
-      amount_shipping: session.total_details.amount_shipping / 100,
-      images: JSON.parse(session.metadata.images),
+      amount: session?.amount_total / 100,
+      amount_shipping: session?.total_details?.amount_shipping / 100,
+      images: JSON.parse(session?.metadata?.images),
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     })
     .then(() => {
@@ -43,7 +43,7 @@ export default async (req, res) => {
       return res.status(400).send("Webhook error", error.message);
     }
     //handle checkout.session.completed event
-    if (event.type === "checkout-session-completed") {
+    if (event.type === "checkout.session.completed") {
       const session = event.data.object;
       //Fufill order
       return fufillOrder(session)
